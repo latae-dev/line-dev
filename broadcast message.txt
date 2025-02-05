@@ -1,0 +1,248 @@
+<?php
+
+$access_token = "InK32TA8K71iAw7moN5wy24+1ne3tK9/UHtQDL7xMCdN6OAToLgGnDFlCDSQMTmWGAW7KitNW2IoQVZR1LdiwpDmMXzn3ka5RyP7KrWIhOCdOGDHxoVJqXBM0HJr/VNktAVQrpF/MspTlYd5wc9w6wdB04t89/1O/w1cDnyilFU="; // ใส่ Line Channel Access Token ของคุณที่นี่
+
+$flexMessage = [
+    "messages" => [
+        [
+            "type" => "flex",
+            "altText" => "รายงานยอดประจำวัน",
+            "contents" => [
+                "type" => "bubble",
+                "header" => [
+                    "type" => "box", 
+                    "layout" => "vertical",
+                    "flex" => 0,
+                    "backgroundColor" => "#262262",
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "สำหรับผู้บริหารระดับสูง",
+                            "weight" => "bold",
+                            "size" => "lg",
+                            "color" => "#FFFFFFFF",
+                            "align" => "start",
+                            "contents" => [
+                                [
+                                    "type" => "span",
+                                    "text" => "สำหรับผู้บริหารระดับสูง"
+                                ]
+                            ]
+                        ],
+                        [
+                            "type" => "image",
+                            "url" => "https://img5.pic.in.th/file/secure-sv1/JIB_white_logo.png",
+                            "align" => "end",
+                            "gravity" => "center", 
+                            "size" => "xs",
+                            "aspectMode" => "fit",
+                            "position" => "absolute",
+                            "offsetTop" => "10px",
+                            "offsetBottom" => "7px",
+                            "offsetEnd" => "15px"
+                        ]
+                    ]
+                ],
+                "body" => [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "spacing" => "md",
+                    "action" => [
+                        "type" => "uri",
+                        "label" => "Action",
+                        "uri" => "https://linecorp.com"
+                    ],
+                    "contents" => [
+                        [
+                            "type" => "text",
+                            "text" => "รายงานยอดประจำวัน",
+                            "weight" => "bold",
+                            "size" => "xl",
+                            "color" => "#000000FF",
+                            "contents" => []
+                        ],
+                        [
+                            "type" => "text",
+                            "text" => "1 ก.พ. 68 18.30 น.",
+                            "size" => "xxs",
+                            "color" => "#AAAAAA",
+                            "wrap" => true,
+                            "contents" => []
+                        ],
+                        [
+                            "type" => "separator",
+                            "margin" => "lg"
+                        ],
+                        [
+                            "type" => "box",
+                            "layout" => "vertical",
+                            "spacing" => "sm",
+                            "contents" => [
+                                [
+                                    "type" => "box",
+                                    "layout" => "baseline",
+                                    "contents" => [
+                                        [
+                                            "type" => "text",
+                                            "text" => "ยอดขายทั้งหมด",
+                                            "weight" => "bold",
+                                            "color" => "#000000FF",
+                                            "margin" => "sm",
+                                            "contents" => []
+                                        ],
+                                        [
+                                            "type" => "text",
+                                            "text" => "211,000 บาท",
+                                            "weight" => "bold",
+                                            "size" => "md",
+                                            "color" => "#262262FF",
+                                            "align" => "end",
+                                            "contents" => []
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "type" => "separator",
+                                    "margin" => "md"
+                                ],
+                                [
+                                    "type" => "text",
+                                    "text" => "รายละเอียด",
+                                    "size" => "xxs",
+                                    "color" => "#AAAAAA",
+                                    "wrap" => true,
+                                    "contents" => []
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "baseline",
+                                    "contents" => [
+                                        [
+                                            "type" => "text",
+                                            "text" => "ยอดขายออนไลน์",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "flex" => 0,
+                                            "margin" => "sm",
+                                            "contents" => []
+                                        ],
+                                        [
+                                            "type" => "text",
+                                            "text" => "211,000 บาท",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "color" => "#262262",
+                                            "align" => "end",
+                                            "contents" => []
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "baseline",
+                                    "contents" => [
+                                        [
+                                            "type" => "text",
+                                            "text" => "จำนวนบิลทั้งหมด",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "flex" => 0,
+                                            "margin" => "sm",
+                                            "contents" => []
+                                        ],
+                                        [
+                                            "type" => "text",
+                                            "text" => "53,324 บิล",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "color" => "#262262",
+                                            "align" => "end",
+                                            "contents" => []
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "type" => "box",
+                                    "layout" => "baseline",
+                                    "contents" => [
+                                        [
+                                            "type" => "text",
+                                            "text" => "จำนวนสาขาทั้งหมด",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "flex" => 0,
+                                            "margin" => "sm",
+                                            "contents" => []
+                                        ],
+                                        [
+                                            "type" => "text",
+                                            "text" => "94 สาขา",
+                                            "weight" => "bold",
+                                            "size" => "sm",
+                                            "color" => "#262262",
+                                            "align" => "end",
+                                            "contents" => []
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "footer" => [
+                    "type" => "box",
+                    "layout" => "vertical",
+                    "contents" => [
+                        [
+                            "type" => "spacer",
+                            "size" => "xxl"
+                        ],
+                        [
+                            "type" => "button",
+                            "action" => [
+                                "type" => "uri",
+                                "label" => "ดูรายละเอียดเพิ่ม",
+                                "uri" => "https://linecorp.com"
+                            ],
+                            "color" => "#262262",
+                            "style" => "primary"
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ]
+];
+
+try {
+    // ส่งไปยัง LINE API
+    $ch = curl_init("https://api.line.me/v2/bot/message/broadcast");
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/json",
+        "Authorization: Bearer " . $access_token
+    ]);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($flexMessage, JSON_UNESCAPED_UNICODE));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $result = curl_exec($ch);
+    
+    if(curl_errno($ch)) {
+        throw new Exception(curl_error($ch));
+    }
+    
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if($httpCode !== 200) {
+        throw new Exception("LINE API returned HTTP code: " . $httpCode);
+    }
+    
+    curl_close($ch);
+    
+    // แสดงผลลัพธ์
+    echo "ส่งข้อความสำเร็จ!";
+    
+} catch(Exception $e) {
+    echo "เกิดข้อผิดพลาด: " . $e->getMessage();
+}
+
+?>
