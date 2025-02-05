@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- โหลด SweetAlert2 CSS และ JS ก่อน -->
-    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-    body {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #f3f4f6;
-    }
-    </style>
-</head>
-<body>
-
 <?php
 session_start();
 
@@ -26,20 +5,7 @@ $access_token = "InK32TA8K71iAw7moN5wy24+1ne3tK9/UHtQDL7xMCdN6OAToLgGnDFlCDSQMTm
 
 // ตรวจสอบว่ามีข้อมูลใน session หรือไม่
 if (!isset($_SESSION['line_data'])) {
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'ผิดพลาด!',
-                text: 'ไม่พบข้อมูล กรุณากรอกข้อมูลก่อน',
-                icon: 'error',
-                confirmButtonText: 'กลับไปหน้าแบบฟอร์ม',
-                confirmButtonColor: '#3085d6'
-            }).then((result) => {
-                window.location.href = 'index.php';
-            });
-        });
-    </script>";
-    exit();
+    die("ไม่พบข้อมูล กรุณากรอกข้อมูลก่อน");
 }
 
 $data = $_SESSION['line_data'];
@@ -202,57 +168,14 @@ try {
     
     curl_close($ch);
     
-    // ล้าง session
+    // แสดงผลลัพธ์
+    echo "ส่งข้อความสำเร็จ!";
+    
+    // ล้าง session หลังจากส่งข้อมูลเสร็จ
     unset($_SESSION['line_data']);
     
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'ส่งข้อความสำเร็จ!',
-                text: 'ระบบได้ส่งข้อความไปยังกลุ่มเรียบร้อยแล้ว',
-                icon: 'success',
-                timer: 2000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-                background: '#fff',
-                iconColor: '#28a745',
-                customClass: {
-                    popup: 'animated fadeInDown'
-                },
-                willClose: () => {
-                    window.location.href = 'index.php';
-                }
-            });
-        });
-    </script>";
-    
 } catch(Exception $e) {
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'เกิดข้อผิดพลาด!',
-                text: '" . addslashes($e->getMessage()) . "',
-                icon: 'error',
-                confirmButtonText: 'ลองใหม่อีกครั้ง',
-                confirmButtonColor: '#3085d6',
-                showCancelButton: true,
-                cancelButtonText: 'กลับหน้าหลัก',
-                cancelButtonColor: '#d33',
-                background: '#fff',
-                customClass: {
-                    popup: 'animated fadeInDown'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.reload();
-                } else {
-                    window.location.href = 'index.php';
-                }
-            });
-        });
-    </script>";
+    echo "เกิดข้อผิดพลาด: " . $e->getMessage();
 }
-?>
 
-</body>
-</html>
+?>

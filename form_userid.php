@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- โหลด SweetAlert2 CSS และ JS -->
-    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-material-ui/material-ui.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <style>
-    body {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background-color: #f3f4f6;
-    }
-    </style>
-</head>
-<body>
-
 <?php
 session_start();
 
@@ -26,20 +5,7 @@ $access_token = "InK32TA8K71iAw7moN5wy24+1ne3tK9/UHtQDL7xMCdN6OAToLgGnDFlCDSQMTm
 
 // ตรวจสอบว่ามีข้อมูลใน session หรือไม่
 if (!isset($_SESSION['line_data'])) {
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'ผิดพลาด!',
-                text: 'ไม่พบข้อมูล กรุณากรอกข้อมูลก่อน',
-                icon: 'error',
-                confirmButtonText: 'กลับไปหน้าแบบฟอร์ม',
-                confirmButtonColor: '#3085d6'
-            }).then((result) => {
-                window.location.href = 'index.php';
-            });
-        });
-    </script>";
-    exit();
+    die("ไม่พบข้อมูล กรุณากรอกข้อมูลก่อน");
 }
 
 $data = $_SESSION['line_data'];
@@ -225,65 +191,21 @@ try {
         }
     }
     
+    // แสดงผลลัพธ์
+    echo "ส่งข้อความสำเร็จ " . $success_count . " ราย<br>";
+    
+    if(!empty($failed_users)) {
+        echo "ไม่สามารถส่งข้อความไปยัง User ID ต่อไปนี้:<br>";
+        foreach($failed_users as $failed_user) {
+            echo "- " . $failed_user . "<br>";
+        }
+    }
+    
     // ล้าง session หลังจากส่งข้อมูลเสร็จ
     unset($_SESSION['line_data']);
     
-    // สร้างข้อความสำหรับผู้ใช้ที่ส่งไม่สำเร็จ
-    $failedMessage = '';
-    if (!empty($failed_users)) {
-        $failedMessage = '<br>ไม่สามารถส่งข้อความไปยัง:<br>' . implode('<br>', $failed_users);
-    }
-    
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'ส่งข้อความสำเร็จ!',
-                html: 'ส่งข้อความสำเร็จ " . $success_count . " ราย" . addslashes($failedMessage) . "',
-                icon: '" . (empty($failed_users) ? "success" : "warning") . "',
-                timer: " . (empty($failed_users) ? "2000" : "false") . ",
-                timerProgressBar: " . (empty($failed_users) ? "true" : "false") . ",
-                showConfirmButton: " . (empty($failed_users) ? "false" : "true") . ",
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: '#3085d6',
-                background: '#fff',
-                iconColor: '" . (empty($failed_users) ? "#28a745" : "#ffc107") . "',
-                customClass: {
-                    popup: 'animated fadeInDown'
-                },
-                willClose: () => {
-                    window.location.href = 'index.php';
-                }
-            });
-        });
-    </script>";
-    
 } catch(Exception $e) {
-    echo "<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'เกิดข้อผิดพลาด!',
-                text: '" . addslashes($e->getMessage()) . "',
-                icon: 'error',
-                confirmButtonText: 'ลองใหม่อีกครั้ง',
-                confirmButtonColor: '#3085d6',
-                showCancelButton: true,
-                cancelButtonText: 'กลับหน้าหลัก',
-                cancelButtonColor: '#d33',
-                background: '#fff',
-                customClass: {
-                    popup: 'animated fadeInDown'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.reload();
-                } else {
-                    window.location.href = 'index.php';
-                }
-            });
-        });
-    </script>";
+    echo "เกิดข้อผิดพลาด: " . $e->getMessage();
 }
-?>
 
-</body>
-</html>
+?>
